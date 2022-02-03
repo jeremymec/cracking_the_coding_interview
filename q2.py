@@ -28,3 +28,4 @@ if __name__ == "__main__":
     result = is_permutation("true", "ert")
     result2 = is_permutation2("true", "ert")
     print(result, result2)
+
