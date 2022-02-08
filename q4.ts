@@ -1,32 +1,33 @@
+const is_palindrome_permutation = (input: string): boolean => {
+  const letter_map = new Map();
 
-const is_palindrome_permutation = (first: string, second: string): boolean => {
-    const letter_map_first = new Map();
-    const letter_map_second = new Map();
+  for (const char of input) {
+    const current: number = letter_map.get(char) ?? 0;
+    letter_map.set(char, current + 1);
+  }
 
-    for (const char of first) {
-        const current: number = letter_map_first.get(char) ?? 0;
-        letter_map_first.set(char, current + 1);
+  let odd_count = 0;
+  for (const value of letter_map.values()) {
+    if (value % 2 !== 0) {
+      odd_count++;
     }
-
-    for (const char of second) {
-        const current: number = letter_map_second.get(char) ?? 0;
-        letter_map_second.set(char, current + 1);
+    if (odd_count > 1) {
+      return false;
     }
+  }
 
-    if (letter_map_first.size !== letter_map_second.size) { return false; }
+  return true;
+};
 
-    for (const [key, value] of letter_map_first.entries()) {
-        if (letter_map_second.get(key) !== value) { return false; }
-    }
+const is_palindrome_permutation_es6 = (input: string): boolean => {
+  const char_array = [...input];
+  return (
+    char_array
+      .map((val) => [val, char_array.filter((char) => char === val).length])
+      .reduce((sum, val) => {
+        return val % 2 == 0 ? sum : sum + 1;
+      }) <= 1
+  );
+};
 
-    let odd_count = 0;
-    for (const value of letter_map_first.values()) {
-        if (value % 2 !== 0) { odd_count++; }
-        if (odd_count > 1) { return false; }
-    }
-
-    return true;
-    
-}
-
-console.log(is_palindrome_permutation("cat"))
+console.log(is_palindrome_permutation_es6("cac"));
