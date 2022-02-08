@@ -22,12 +22,13 @@ const is_palindrome_permutation = (input: string): boolean => {
 const is_palindrome_permutation_es6 = (input: string): boolean => {
   const char_array = [...input];
   return (
-    char_array
-      .map((val) => [val, char_array.filter((char) => char === val).length])
+    [...new Set(char_array)]
+      .map((val) => char_array.filter((char) => char === val).length)
       .reduce((sum, val) => {
-        return val % 2 == 0 ? sum : sum + 1;
-      }) <= 1
+        return val % 2 === 0 ? sum : sum + 1;
+      }, 0) <= 1
   );
 };
 
-console.log(is_palindrome_permutation_es6("cac"));
+console.log(is_palindrome_permutation("tacooocat"));
+console.log(is_palindrome_permutation_es6("tacooocat"));
