@@ -3,7 +3,7 @@ const rotate_matrix = (input: number[][]): number[][] => {
 
   let layer = 0;
 
-  while (layer < (input[0].length < 2 ? input[0].length : 4) - 2) {
+  while (layer < (input[0].length / 2 )) {
     for (let x = 0 + layer; x < input[0].length - 1 - layer; x++) {
       const max = input[0].length - 1 - layer;
       const offset = x - layer;
