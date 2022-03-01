@@ -1,3 +1,5 @@
+import { print_matrix } from "./helpers";
+
 const rotate_matrix = (input: number[][]): number[][] => {
   const size = input[0].length;
 
@@ -30,14 +32,6 @@ const rotate_matrix = (input: number[][]): number[][] => {
   }
 
   return input;
-};
-
-const print_matrix = (input: number[][]): void => {
-  for (let y = 0; y < input.length; y++) {
-    console.log(input[y]);
-  }
-
-  console.log("\n");
 };
 
 const input_one = [
